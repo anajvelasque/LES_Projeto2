@@ -6,11 +6,23 @@ import { Box, Divider, Drawer, Typography, useMediaQuery } from "@mui/material";
 import { ChartBar as ChartBarIcon } from "../icons/chart-bar";
 import { UserAdd as UserAddIcon } from "../icons/user-add";
 import { Lock as LockIcon } from "../icons/lock";
+import { Home as HomeIcon } from "../icons/home";
+import { Gallery as GalleryIcon } from "../icons/gallery";
 import { Users as UsersIcon } from "../icons/users";
 import { Logo } from "./logo";
 import { NavItem } from "./nav-item";
 
 const items = [
+  {
+    href: "/home",
+    icon: <HomeIcon fontSize="small" />,
+    title: "Home",
+  },
+  {
+    href: "/gallery",
+    icon: <GalleryIcon fontSize="small" />,
+    title: "Galeria",
+  },
   {
     href: "/patients",
     icon: <UserAddIcon fontSize="small" />,

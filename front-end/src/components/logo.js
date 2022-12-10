@@ -9,7 +9,7 @@ export const Logo = styled((props) => {
 
   return (
     <Typography color={color} fontSize="2rem" fontWeight="700">
-      CEFET MG
+      Clínica ALP
     </Typography>
   );
 })``;
