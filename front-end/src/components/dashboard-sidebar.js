@@ -14,16 +14,6 @@ import { NavItem } from "./nav-item";
 
 const items = [
   {
-    href: "/home",
-    icon: <HomeIcon fontSize="small" />,
-    title: "Home",
-  },
-  {
-    href: "/gallery",
-    icon: <GalleryIcon fontSize="small" />,
-    title: "Galeria",
-  },
-  {
     href: "/patients",
     icon: <UserAddIcon fontSize="small" />,
     title: "Pacientes",
@@ -89,7 +79,7 @@ export const DashboardSidebar = (props) => {
             justifyContent="center"
             alignItems="center"
           >
-            <NextLink href="/" passHref>
+            <NextLink href="/home" passHref>
               <Logo
                 sx={{
                   height: 42,
