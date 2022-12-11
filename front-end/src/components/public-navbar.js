@@ -26,6 +26,10 @@ export const PublicNavbar = (props) => {
     router.push("/gallery");
   };
 
+  const handleGoToHome = () => {
+    router.push("/home");
+  };
+
   return (
     <>
       <PublicNavbarRoot>
@@ -40,7 +44,9 @@ export const PublicNavbar = (props) => {
           <NextLink href="/home" passHref>
             <Logo variant="light" />
           </NextLink>
-
+          <Button color="secondary" onClick={handleGoToHome} style={{ marginLeft: "1rem" }}>
+            Home
+          </Button>
           <Button color="secondary" onClick={handleGoToGallery} style={{ marginLeft: "1rem" }}>
             Galeria
           </Button>
