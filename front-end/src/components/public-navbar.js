@@ -30,6 +30,10 @@ export const PublicNavbar = (props) => {
     router.push("/home");
   };
 
+  const handleGoToCreateAppointment = () => {
+    router.push("/create-appointment");
+  };
+
   return (
     <>
       <PublicNavbarRoot>
@@ -50,7 +54,9 @@ export const PublicNavbar = (props) => {
           <Button color="secondary" onClick={handleGoToGallery} style={{ marginLeft: "1rem" }}>
             Galeria
           </Button>
-          <Button color="secondary">Marcar Consulta</Button>
+          <Button color="secondary" onClick={handleGoToCreateAppointment} style={{ marginLeft: "1rem" }}>
+            Agendamento
+          </Button>
           <Button color="secondary">Novo Endereço</Button>
           <Box sx={{ flexGrow: 1 }} />
 
