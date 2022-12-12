@@ -51,7 +51,7 @@ export const PublicNavbar = (props) => {
             Galeria
           </Button>
           <Button color="secondary">Marcar Consulta</Button>
-
+          <Button color="secondary">Novo Endereço</Button>
           <Box sx={{ flexGrow: 1 }} />
 
           <Button color="primary" onClick={handleGoToLoginPage}>
