@@ -1,116 +1,92 @@
-import Head from 'next/head';
-import { Box, Container, Grid } from '@mui/material';
-import { Budget } from '../components/dashboard/budget';
-import { LatestOrders } from '../components/dashboard/latest-orders';
-import { LatestProducts } from '../components/dashboard/latest-products';
-import { Sales } from '../components/dashboard/sales';
-import { TasksProgress } from '../components/dashboard/tasks-progress';
-import { TotalCustomers } from '../components/dashboard/total-customers';
-import { TotalProfit } from '../components/dashboard/total-profit';
-import { TrafficByDevice } from '../components/dashboard/traffic-by-device';
-import { DashboardLayout } from '../components/dashboard-layout';
+import Head from "next/head";
+import { Box, Container } from "@mui/material";
+import { PublicLayout } from "../components/public-layout";
+import { left } from "@popperjs/core";
 
 const Page = () => (
   <>
     <Head>
-      <title>
-        Dashboard | Material Kit
-      </title>
+      <title>Home</title>
     </Head>
     <Box
       component="main"
       sx={{
         flexGrow: 1,
-        py: 8
+        py: 8,
       }}
     >
       <Container maxWidth={false}>
-        <Grid
-          container
-          spacing={3}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            paddingLeft: 200
+          }}
         >
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <Budget />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalCustomers />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TasksProgress />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalProfit sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <Sales />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <TrafficByDevice sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <LatestProducts sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <LatestOrders />
-          </Grid>
-        </Grid>
+          <h1 style={{
+            fontSize: 60,
+            fontColor: "darkBlue",
+            fontWeight: 700,
+            textAlign: "center",
+            paddingRight: 30}}>Bem-Vindo à Clínica ALP</h1>
+          <img src="/static/images/logo.png" resizeMode="contain" style={{height: 130, width: 130}}/>
+        </div>
+        <div
+          style={{
+            fontSize: 20,
+            fontColor: "darkBlue",
+            fontWeight: 400,
+            marginBlock: 40,
+            textAlign: "justify",
+          }}
+        >
+          A Clínica ALP é a especialidade da Medicina focada no diagnóstico e tratamento clínico das
+          patologias em adultos, ou seja, sem cirurgia. O médico desta especialidade é responsável
+          por avaliar o paciente de maneira completa e está apto a resolver a maioria das
+          enfermidades, além de gerenciar o cuidado do paciente indicando o especialista adequado,
+          caso haja necessidade.
+        </div>
+        <div
+          style={{
+            fontSize: 20,
+            fontColor: "darkBlue",
+            fontWeight: 300,
+            marginBlock: 10,
+            textAlign: "justify",
+          }}
+        >
+          Nossa missão é oferecer aos pacientes e familiares a gestão de saúde e bem estar com
+          excelência, humanidade e sustentabilidade, acompanhando os avanços científicos e
+          contribuindo para a melhoria da qualidade de vida.
+        </div>
+        <div
+          style={{
+            fontSize: 20,
+            fontColor: "darkBlue",
+            fontWeight: 600,
+            marginBlock: 20,
+            textAlign: "justify",
+          }}
+        >
+          Nossos Valores:
+        </div>
+        <div style={{ fontSize: 17, fontColor: "darkBlue", fontWeight: 400, textAlign: "justify" }}>
+          Humanização: atendimento individualizado e com respeito ao bem- estar de pacientes,
+          familiares e corpo clínico.
+        </div>
+        <div style={{ fontSize: 17, fontColor: "darkBlue", fontWeight: 400, textAlign: "justify" }}>
+          Inovação: estudo de soluções que proporcionem melhores alternativas para o atendimento em
+          Oncologia e Hematologia.
+        </div>
+        <div style={{ fontSize: 17, fontColor: "darkBlue", fontWeight: 400, textAlign: "justify" }}>
+          Excelência: busca contínua de recursos disponíveis para atender aos pacientes e
+          familiares.
+        </div>
       </Container>
     </Box>
   </>
 );
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <PublicLayout>{page}</PublicLayout>;
 
 export default Page;

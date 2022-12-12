@@ -27,7 +27,7 @@ export const PublicNavbar = (props) => {
   };
 
   const handleGoToHome = () => {
-    router.push("/home");
+    router.push("/");
   };
 
   const handleGoToCreateAppointment = () => {
@@ -45,7 +45,7 @@ export const PublicNavbar = (props) => {
             px: 2,
           }}
         >
-          <NextLink href="/home" passHref>
+          <NextLink href="/" passHref>
             <Logo variant="light" />
           </NextLink>
           <Button color="secondary" onClick={handleGoToHome} style={{ marginLeft: "1rem" }}>
