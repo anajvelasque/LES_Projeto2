@@ -3,12 +3,15 @@ O projeto foi desenvolvido utilizando Java, [React Js](https://pt-br.reactjs.org
 
 Link para o nosso back-end: https://github.com/lucascdornelas/backend-clinica-medica-es 
 
-## Como rodar a aplicação:
+* Para que a aplicação funcione da forma correta, é necessário rodar o front-end e o back-end simultaneamente. 
+
+## Como rodar o front-end da aplicação:
 - Clone o repositório
 - Entre na pasta front-end
 - Rode o comando: ```npm install```
 - Rode o comando: ```npm i && npm serve```
 - Rode o front-end da aplicação com: ```npm run dev```
+
 
 ## Créditos:
 Esse repositório constitui o 2º projeto da disciplina Laboratório de Engenharia de Software 1 ([Cefet-MG](https://cefetmg.br)). 
