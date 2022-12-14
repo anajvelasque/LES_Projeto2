@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import PropTypes from "prop-types";
+import { Button } from "@mui/material";
 import { format } from "date-fns";
 import {
   Avatar,
@@ -16,11 +17,17 @@ import {
   Typography,
 } from "@mui/material";
 import { getInitials } from "../../utils/get-initials";
+import { useRouter } from "next/router"; 
 
 export const PatientListResults = ({ patients, ...rest }) => {
   const [selectedPatientIds, setSelectedPatientIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
+
+  const router = useRouter();
+  const handleGoToPatientRegister = () => {
+    router.push("/register-patients");
+  };
 
   const handleSelectAll = (event) => {
     let newSelectedPatientIds;
@@ -66,6 +73,11 @@ export const PatientListResults = ({ patients, ...rest }) => {
     <Card {...rest}>
       <PerfectScrollbar>
         <Box sx={{ minWidth: 1050 }}>
+        <Box sx={{ m: 1 }}>
+          <Button color="primary" variant="contained" onClick={handleGoToPatientRegister}>
+            Novo Paciente
+          </Button>
+        </Box>
           <Table>
             <TableHead>
               <TableRow>
