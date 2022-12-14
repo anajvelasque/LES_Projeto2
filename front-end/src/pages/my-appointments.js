@@ -1,8 +1,6 @@
 import Head from "next/head";
 import { Box, Container } from "@mui/material";
-import { PatientListResults } from "../components/patient/patient-list-results";
 import { DashboardLayout } from "../components/dashboard-layout";
-import { patients } from "../__mocks__/patients";
 import { MyAppointmentsListToolbar } from "../components/my-appointments/my-appointments-list-toolbar";
 
 const Page = () => (
