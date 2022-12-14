@@ -20,7 +20,7 @@ const Page = () => (
       <Container maxWidth={false}>
         <MyAppointmentsListToolbar />
         <Box sx={{ mt: 3 }}>
-          <PatientListResults patients={patients} />
+          {/* <PatientListResults patients={patients} /> */}
         </Box>
       </Container>
     </Box>
