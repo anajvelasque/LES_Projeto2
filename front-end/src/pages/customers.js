@@ -3,9 +3,15 @@ import { Box, Container } from '@mui/material';
 import { CustomerListResults } from '../components/customer/customer-list-results';
 import { CustomerListToolbar } from '../components/customer/customer-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { customers } from '../__mocks__/customers';
+import { axiosClient } from "../utils/axiosClient";
 
-const Page = () => (
+async function getCustomersAsync() {
+  const result = await axiosClient.get("/customer/");
+  console.log("result", result.data?.result);
+  return result.data?.result || [];
+}
+
+const Page = ({customers}) => (
   <>
     <Head>
       <title>
@@ -20,7 +26,7 @@ const Page = () => (
       }}
     >
       <Container maxWidth={false}>
-        <CustomerListToolbar />
+        {/* <CustomerListToolbar /> */}
         <Box sx={{ mt: 3 }}>
           <CustomerListResults customers={customers} />
         </Box>
@@ -36,3 +42,13 @@ Page.getLayout = (page) => (
 );
 
 export default Page;
+
+export async function getServerSideProps(context) {
+  try {
+    const customers = await getCustomersAsync();
+
+    return { props: { customers } };
+  } catch (error) {
+    return { props: { customers: [] } };
+  }
+}
