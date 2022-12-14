@@ -17,7 +17,11 @@ import {
   Typography,
 } from "@mui/material";
 import { getInitials } from "../../utils/get-initials";
+<<<<<<< HEAD
 import { useRouter } from "next/router";
+=======
+import { useRouter } from "next/router"; 
+>>>>>>> 5bed6b04a73a111679d07877991249123460b139
 
 export const PatientListResults = ({ patients, ...rest }) => {
   const [selectedPatientIds, setSelectedPatientIds] = useState([]);
@@ -73,6 +77,14 @@ export const PatientListResults = ({ patients, ...rest }) => {
     <Card {...rest}>
       <PerfectScrollbar>
         <Box sx={{ minWidth: 1050 }}>
+<<<<<<< HEAD
+=======
+        <Box sx={{ m: 1 }}>
+          <Button color="primary" variant="contained" onClick={handleGoToPatientRegister}>
+            Novo Paciente
+          </Button>
+        </Box>
+>>>>>>> 5bed6b04a73a111679d07877991249123460b139
           <Table>
             <TableHead>
               <TableRow>
