@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Box, Container } from "@mui/material";
-import { CustomerListResults } from "../components/customer/customer-list-results";
+import { PatientListResults } from "../components/patient/patient-list-results";
 import { DashboardLayout } from "../components/dashboard-layout";
-import { customers } from "../__mocks__/customers";
+import { patients } from "../__mocks__/patients";
 import { MyAppointmentsListToolbar } from "../components/my-appointments/my-appointments-list-toolbar";
 
 const Page = () => (
@@ -20,7 +20,7 @@ const Page = () => (
       <Container maxWidth={false}>
         <MyAppointmentsListToolbar />
         <Box sx={{ mt: 3 }}>
-          <CustomerListResults customers={customers} />
+          <PatientListResults patients={patients} />
         </Box>
       </Container>
     </Box>
