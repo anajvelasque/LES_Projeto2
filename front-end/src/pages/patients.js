@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Box, Container } from "@mui/material";
+import { PatientListToolbar } from "../components/patient/patient-list-toolbar";
 import { PatientListResults } from "../components/patient/patient-list-results";
 import { DashboardLayout } from "../components/dashboard-layout";
 import { axiosClient } from "../utils/axiosClient";
@@ -22,6 +23,7 @@ const Page = ({ patients }) => (
       }}
     >
       <Container maxWidth={false}>
+        <PatientListToolbar />
         <Box sx={{ mt: 3 }}>
           <PatientListResults patients={patients} />
         </Box>

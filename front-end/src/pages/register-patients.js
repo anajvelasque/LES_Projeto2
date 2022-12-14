@@ -3,21 +3,63 @@ import NextLink from "next/link";
 import Router from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Link, TextField, Typography, Divider } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { axiosClient } from "../utils/axiosClient";
+import { DashboardLayout } from "../components/dashboard-layout";
 
 async function postPatientAsync(patient) {
-  const { name, email, phone, cep, logradouro, bairro, cidade, estado, weigth, heigth, bloodType } = patient;
-  const body =  { name, email, phone, cep, logradouro, bairro, cidade, estado, weigth, heigth, bloodType } ;
+  const { name, email, phone, cep, logradouro, bairro, cidade, estado, weigth, heigth, bloodType } =
+    patient;
+
+  const body = {
+    name,
+    email,
+    phone,
+    cep,
+    logradouro,
+    bairro,
+    cidade,
+    estado,
+    weigth,
+    heigth,
+    bloodType,
+  };
+
+  const bodyCep = {
+    cep,
+    logradouro,
+    bairro,
+    cidade,
+    estado,
+  };
 
   try {
     const result = await axiosClient.post("/patient/", body);
-    return result;
+    const resultCep = await axiosClient.post("/cep/", bodyCep);
+    return { result, resultCep };
   } catch (error) {
     console.error(error);
   }
+}
+
+function getCep(cepNumber, setFieldValue) {
+  const sanitizeCep = cepNumber.replace("-", "");
+
+  axiosClient
+    .get(`cep/${sanitizeCep}`)
+    .then((v) => {
+      const { bairro, cidade, estado, logradouro } = v.data.result;
+
+      setFieldValue("bairro", bairro);
+      setFieldValue("cidade", cidade);
+      setFieldValue("estado", estado);
+      setFieldValue("logradouro", logradouro);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 }
 
 const Page = () => {
@@ -27,30 +69,29 @@ const Page = () => {
       email: "",
       phone: "",
 
+      weigth: "",
+      heigth: "",
+      bloodType: "",
+
       cep: "",
       logradouro: "",
       bairro: "",
       cidade: "",
       estado: "",
-
-      weigth: "",
-      heigth: "",
-      bloodType: ""
     },
     validationSchema: Yup.object({
-      nome: Yup.string().max(255).required("Nome é necessário"),
+      name: Yup.string().max(255).required("Nome é necessário"),
       email: Yup.string().max(255).required("Email é necessário"),
       phone: Yup.string().max(15).required("Telefone é necessário"),
+      weigth: Yup.number().max(255).required("Peso é necessário"),
+      heigth: Yup.number().max(255).required("Altura é necessário"),
+      bloodType: Yup.string().max(2).required("Tipo Sanguíneo é necessário"),
 
       cep: Yup.string().max(9).required("CEP é necessário"),
       logradouro: Yup.string().max(255).required("Logradouro é necessário"),
       bairro: Yup.string().max(255).required("bairro é necessário"),
       cidade: Yup.string().max(255).required("cidade é necessário"),
       estado: Yup.string().max(255).required("estado é necessário"),
-
-      weigth: Yup.number().max(255).required("Peso é necessário"),
-      heigth: Yup.number().max(255).required("Altura é necessário"),
-      bloodType: Yup.string().max(2).required("Tipo Sanguíneo é necessário"),
     }),
     onSubmit: async (data) => {
       return await postPatientAsync(data);
@@ -71,12 +112,13 @@ const Page = () => {
           minHeight: "100%",
         }}
       >
-        <Container maxWidth="sm">
+        <Container>
           <NextLink href="/patients" passHref>
             <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
               Voltar para o sistema
             </Button>
           </NextLink>
+
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography color="textPrimary" variant="h4">
@@ -133,76 +175,6 @@ const Page = () => {
             />
 
             <TextField
-              error={Boolean(formik.touched.cep && formik.errors.cep)}
-              fullWidth
-              helperText={formik.touched.cep && formik.errors.cep}
-              label="CEP"
-              margin="normal"
-              name="cep"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="text"
-              value={formik.values.cep}
-              variant="outlined"
-            />
-
-            <TextField
-              error={Boolean(formik.touched.logradouro && formik.errors.logradouro)}
-              fullWidth
-              helperText={formik.touched.logradouro && formik.errors.logradouro}
-              label="Logradouro"
-              margin="normal"
-              name="logradouro"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="text"
-              value={formik.values.logradouro}
-              variant="outlined"
-            />
-
-            <TextField
-              error={Boolean(formik.touched.bairro && formik.errors.bairro)}
-              fullWidth
-              helperText={formik.touched.bairro && formik.errors.bairro}
-              label="Bairro"
-              margin="normal"
-              name="bairro"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="text"
-              value={formik.values.bairro}
-              variant="outlined"
-            />
-
-            <TextField
-              error={Boolean(formik.touched.cidade && formik.errors.cidade)}
-              fullWidth
-              helperText={formik.touched.cidade && formik.errors.cidade}
-              label="Cidade"
-              margin="normal"
-              name="cidade"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="text"
-              value={formik.values.cidade}
-              variant="outlined"
-            />
-
-            <TextField
-              error={Boolean(formik.touched.estado && formik.errors.estado)}
-              fullWidth
-              helperText={formik.touched.estado && formik.errors.estado}
-              label="Estado"
-              margin="normal"
-              name="estado"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="text"
-              value={formik.values.estado}
-              variant="outlined"
-            />
-
-            <TextField
               error={Boolean(formik.touched.weigth && formik.errors.weigth)}
               fullWidth
               helperText={formik.touched.weigth && formik.errors.weigth}
@@ -244,6 +216,88 @@ const Page = () => {
               variant="outlined"
             />
 
+            <Divider style={{ marginTop: "1rem" }}>Endereço</Divider>
+
+            <Box display="flex" gap="1rem" alignItems="center">
+              <TextField
+                error={Boolean(formik.touched.cep && formik.errors.cep)}
+                fullWidth
+                helperText={formik.touched.cep && formik.errors.cep}
+                label="CEP"
+                margin="normal"
+                name="cep"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                type="text"
+                value={formik.values.cep}
+                variant="outlined"
+              />
+              <Button
+                color="primary"
+                size="sm"
+                type="submit"
+                variant="outlined"
+                style={{ width: "150px", height: "fit-content" }}
+                onClick={() => getCep(formik.values.cep, formik.setFieldValue)}
+              >
+                Buscar CEP
+              </Button>
+            </Box>
+
+            <TextField
+              error={Boolean(formik.touched.logradouro && formik.errors.logradouro)}
+              fullWidth
+              helperText={formik.touched.logradouro && formik.errors.logradouro}
+              label="Logradouro"
+              margin="normal"
+              name="logradouro"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="text"
+              value={formik.values.logradouro}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.bairro && formik.errors.bairro)}
+              fullWidth
+              helperText={formik.touched.bairro && formik.errors.bairro}
+              label="Bairro"
+              margin="normal"
+              name="bairro"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="text"
+              value={formik.values.bairro}
+              variant="outlined"
+            />
+
+            <TextField
+              error={Boolean(formik.touched.cidade && formik.errors.cidade)}
+              fullWidth
+              helperText={formik.touched.cidade && formik.errors.cidade}
+              label="Cidade"
+              margin="normal"
+              name="cidade"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="text"
+              value={formik.values.cidade}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.estado && formik.errors.estado)}
+              fullWidth
+              helperText={formik.touched.estado && formik.errors.estado}
+              label="Estado"
+              margin="normal"
+              name="estado"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="text"
+              value={formik.values.estado}
+              variant="outlined"
+            />
+
             <Box sx={{ py: 2 }}>
               <Button
                 color="primary"
@@ -253,7 +307,7 @@ const Page = () => {
                 type="submit"
                 variant="contained"
               >
-                Cadastrar Paciente
+                Cadastrar Pacientes
               </Button>
             </Box>
           </form>
@@ -262,5 +316,7 @@ const Page = () => {
     </>
   );
 };
+
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Page;

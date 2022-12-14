@@ -34,7 +34,7 @@ export const EmployeesListToolbar = (props) => {
         </Typography>
         <Box sx={{ m: 1 }}>
           <Button color="primary" variant="contained" onClick={handleGoToEmployeeRegister}>
-            Novo Funcionario
+            Novo Paciente
           </Button>
         </Box>
       </Box>

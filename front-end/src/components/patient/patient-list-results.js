@@ -17,7 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import { getInitials } from "../../utils/get-initials";
-import { useRouter } from "next/router"; 
+import { useRouter } from "next/router";
 
 export const PatientListResults = ({ patients, ...rest }) => {
   const [selectedPatientIds, setSelectedPatientIds] = useState([]);
@@ -73,11 +73,6 @@ export const PatientListResults = ({ patients, ...rest }) => {
     <Card {...rest}>
       <PerfectScrollbar>
         <Box sx={{ minWidth: 1050 }}>
-        <Box sx={{ m: 1 }}>
-          <Button color="primary" variant="contained" onClick={handleGoToPatientRegister}>
-            Novo Paciente
-          </Button>
-        </Box>
           <Table>
             <TableHead>
               <TableRow>
@@ -115,35 +110,13 @@ export const PatientListResults = ({ patients, ...rest }) => {
                       value="true"
                     />
                   </TableCell>
-                  <TableCell>
-                    <Box
-                      sx={{
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <Avatar src={patient.avatarUrl} sx={{ mr: 2 }}>
-                        {" "}
-                        {getInitials(patient.name)}{" "}
-                      </Avatar>
-                      <Typography color="textPrimary" variant="body1">
-                        {" "}
-                        {patient.name}{" "}
-                      </Typography>
-                    </Box>
-                  </TableCell>
+                  <TableCell>{patient.name}</TableCell>
                   <TableCell> {patient.email} </TableCell>
-                  <TableCell>
-                    {JSON.stringify(patient.address)}
-                    {/* {`${patient.address.city}, ${patient.address.state}, ${patient.address.country}`} */}
-                  </TableCell>
+                  <TableCell>{`${patient.cep}, ${patient.logradouro}`}</TableCell>
                   <TableCell> {patient.phone} </TableCell>
                   <TableCell> {patient.bloodType} </TableCell>
                   <TableCell> {patient.weigth} </TableCell>
                   <TableCell> {patient.heigth} </TableCell>
-                  <TableCell>
-                    {new Date(patient.createdAt._seconds * 1000).toDateString()}
-                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
