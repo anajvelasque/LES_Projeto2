@@ -5,6 +5,7 @@ import { PatientListToolbar } from "../components/customer/customer-list-toolbar
 import { DashboardLayout } from "../components/dashboard-layout";
 import { customers } from "../__mocks__/customers";
 
+
 const Page = () => (
   <>
     <Head>
