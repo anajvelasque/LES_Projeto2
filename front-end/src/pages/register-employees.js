@@ -134,7 +134,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Cadastrar Endereços</title>
+        <title>Cadastrar Funcionário</title>
       </Head>
       <Box
         component="main"
@@ -318,10 +318,6 @@ const Page = () => {
                 Buscar CEP
               </Button>
             </Box>
-<<<<<<< HEAD
-
-=======
->>>>>>> 5bed6b04a73a111679d07877991249123460b139
             <TextField
               error={Boolean(formik.touched.logradouro && formik.errors.logradouro)}
               fullWidth
@@ -384,7 +380,7 @@ const Page = () => {
                 type="submit"
                 variant="contained"
               >
-                Cadastrar Endereço
+                Cadastrar Funcionário
               </Button>
             </Box>
           </form>
