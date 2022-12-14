@@ -1,15 +1,18 @@
 import Head from "next/head";
 import { Box, Container } from "@mui/material";
-import { CustomerListResults } from "../components/customer/customer-list-results";
-import { PatientListToolbar } from "../components/customer/customer-list-toolbar";
+import { PatientListResults } from "../components/patient/patient-list-results";
 import { DashboardLayout } from "../components/dashboard-layout";
-import { customers } from "../__mocks__/customers";
+import { axiosClient } from "../utils/axiosClient";
 
+async function getPatientsAsync() {
+  const result = await axiosClient.get("/patient/");
+  return result.data?.result || [];
+}
 
-const Page = () => (
+const Page = ({ patients }) => (
   <>
     <Head>
-      <title>Pacientes</title>
+      <title>Patients</title>
     </Head>
     <Box
       component="main"
@@ -19,9 +22,8 @@ const Page = () => (
       }}
     >
       <Container maxWidth={false}>
-        <PatientListToolbar />
         <Box sx={{ mt: 3 }}>
-          <CustomerListResults customers={customers} />
+          <PatientListResults patients={patients} />
         </Box>
       </Container>
     </Box>
@@ -31,3 +33,12 @@ const Page = () => (
 Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Page;
+
+export async function getServerSideProps(context) {
+  try {
+    const patients = await getPatientsAsync();
+    return { props: { patients } };
+  } catch (error) {
+    return { props: { patients: [] } };
+  }
+}

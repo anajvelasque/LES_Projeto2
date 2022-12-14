@@ -17,41 +17,41 @@ import {
 } from "@mui/material";
 import { getInitials } from "../../utils/get-initials";
 
-export const CustomerListResults = ({ customers, ...rest }) => {
-  const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
+export const PatientListResults = ({ patients, ...rest }) => {
+  const [selectedPatientIds, setSelectedPatientIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
   const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
+    let newSelectedPatientIds;
 
     if (event.target.checked) {
-      newSelectedCustomerIds = customers.map((customer) => customer.id);
+      newSelectedPatientIds = patients.map((patient) => patient.id);
     } else {
-      newSelectedCustomerIds = [];
+      newSelectedPatientIds = [];
     }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelectedPatientIds(newSelectedPatientIds);
   };
 
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCustomerIds.indexOf(id);
-    let newSelectedCustomerIds = [];
+    const selectedIndex = selectedPatientIds.indexOf(id);
+    let newSelectedPatientIds = [];
 
     if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id);
+      newSelectedPatientIds = newSelectedPatientIds.concat(selectedPatientIds, id);
     } else if (selectedIndex === 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
-    } else if (selectedIndex === selectedCustomerIds.length - 1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(0, -1));
+      newSelectedPatientIds = newSelectedPatientIds.concat(selectedPatientIds.slice(1));
+    } else if (selectedIndex === selectedPatientIds.length - 1) {
+      newSelectedPatientIds = newSelectedPatientIds.concat(selectedPatientIds.slice(0, -1));
     } else if (selectedIndex > 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(0, selectedIndex),
-        selectedCustomerIds.slice(selectedIndex + 1)
+      newSelectedPatientIds = newSelectedPatientIds.concat(
+        selectedPatientIds.slice(0, selectedIndex),
+        selectedPatientIds.slice(selectedIndex + 1)
       );
     }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelectedPatientIds(newSelectedPatientIds);
   };
 
   const handleLimitChange = (event) => {
@@ -71,11 +71,10 @@ export const CustomerListResults = ({ customers, ...rest }) => {
               <TableRow>
                 <TableCell padding="checkbox">
                   <Checkbox
-                    checked={selectedCustomerIds.length === customers.length}
+                    checked={selectedPatientIds.length === patients.length}
                     color="primary"
                     indeterminate={
-                      selectedCustomerIds.length > 0 &&
-                      selectedCustomerIds.length < customers.length
+                      selectedPatientIds.length > 0 && selectedPatientIds.length < patients.length
                     }
                     onChange={handleSelectAll}
                   />
@@ -92,16 +91,16 @@ export const CustomerListResults = ({ customers, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {customers.slice(0, limit).map((customer) => (
+              {patients.slice(0, limit).map((patient) => (
                 <TableRow
                   hover
-                  key={customer.id}
-                  selected={selectedCustomerIds.indexOf(customer.id) !== -1}
+                  key={patient.id}
+                  selected={selectedPatientIds.indexOf(patient.id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedCustomerIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
+                      checked={selectedPatientIds.indexOf(patient.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, patient.id)}
                       value="true"
                     />
                   </TableCell>
@@ -113,27 +112,27 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                       }}
                     >
                       <Avatar
-                        src={customer.avatarUrl}
+                        src={patient.avatarUrl}
                         sx={{ mr: 2 }}
                       >
-                        {getInitials(customer.name)}
+                        {getInitials(patient.name)}
                       </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {customer.name}
+                        {patient.name}
                       </Typography>
                     </Box>
                   </TableCell> */}
-                  <TableCell>{customer.name}</TableCell>
-                  <TableCell>{customer.email}</TableCell>
+                  <TableCell>{patient.name}</TableCell>
+                  <TableCell>{patient.email}</TableCell>
                   {/* <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
+                    {`${patient.address.city}, ${patient.address.state}, ${patient.address.country}`}
                   </TableCell> */}
-                  <TableCell>{customer.phone}</TableCell>
+                  <TableCell>{patient.phone}</TableCell>
                   {/* <TableCell>
-                    {format(customer.createdAt, 'dd/MM/yyyy')}
+                    {format(patient.createdAt, 'dd/MM/yyyy')}
                   </TableCell> */}
                 </TableRow>
               ))}
@@ -143,7 +142,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={customers.length}
+        count={patients.length}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleLimitChange}
         page={page}
@@ -154,6 +153,6 @@ export const CustomerListResults = ({ customers, ...rest }) => {
   );
 };
 
-CustomerListResults.propTypes = {
-  customers: PropTypes.array.isRequired,
+PatientListResults.propTypes = {
+  patients: PropTypes.array.isRequired,
 };
