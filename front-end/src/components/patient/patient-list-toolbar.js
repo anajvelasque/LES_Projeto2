@@ -1,9 +1,4 @@
-import {
-  Box,
-  Button,
-  Typography,
-} from "@mui/material";
-
+import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
 export const PatientListToolbar = (props) => {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import PropTypes from "prop-types";
 import {
-  Avatar,
   Box,
   Card,
   Checkbox,
@@ -12,9 +11,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
 } from "@mui/material";
-import { getInitials } from "../../utils/get-initials";
 import { useRouter } from "next/router";
 
 export const PatientListResults = ({ patients, ...rest }) => {

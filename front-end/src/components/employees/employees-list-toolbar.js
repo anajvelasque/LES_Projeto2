@@ -53,7 +53,7 @@ export const EmployeesListToolbar = (props) => {
                     </InputAdornment>
                   ),
                 }}
-                placeholder="Search customer"
+                placeholder="Buscar"
                 variant="outlined"
               />
             </Box>

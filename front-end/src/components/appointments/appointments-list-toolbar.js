@@ -9,8 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Search as SearchIcon } from "../../icons/search";
-import { Upload as UploadIcon } from "../../icons/upload";
-import { Download as DownloadIcon } from "../../icons/download";
 
 export const AppointmentsListToolbar = (props) => (
   <Box {...props}>
@@ -47,7 +45,7 @@ export const AppointmentsListToolbar = (props) => (
                   </InputAdornment>
                 ),
               }}
-              placeholder="Search customer"
+              placeholder="Buscar"
               variant="outlined"
             />
           </Box>
