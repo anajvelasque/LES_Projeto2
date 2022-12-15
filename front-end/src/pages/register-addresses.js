@@ -129,7 +129,7 @@ const Page = () => {
               helperText={formik.touched.cidade && formik.errors.cidade}
               label="Cidade"
               margin="normal"
-              name="Cidade"
+              name="cidade"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               type="text"
