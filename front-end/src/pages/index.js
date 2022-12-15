@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Box, Container } from "@mui/material";
 import { PublicLayout } from "../components/public-layout";
-import { left } from "@popperjs/core";
 
 const Page = () => (
   <>
@@ -20,16 +19,25 @@ const Page = () => (
           style={{
             display: "flex",
             flexDirection: "row",
-            paddingLeft: 200
+            paddingLeft: 200,
           }}
         >
-          <h1 style={{
-            fontSize: 60,
-            fontColor: "darkBlue",
-            fontWeight: 700,
-            textAlign: "center",
-            paddingRight: 30}}>Bem-Vindo à Clínica ALP</h1>
-          <img src="/static/images/logo.png" resizeMode="contain" style={{height: 130, width: 130}}/>
+          <h1
+            style={{
+              fontSize: 60,
+              fontColor: "darkBlue",
+              fontWeight: 700,
+              textAlign: "center",
+              paddingRight: 30,
+            }}
+          >
+            Bem-Vindo à Clínica ALP
+          </h1>
+          <img
+            src="/static/images/logo.png"
+            resizeMode="contain"
+            style={{ height: 130, width: 130 }}
+          />
         </div>
         <div
           style={{

@@ -3,13 +3,13 @@ import NextLink from "next/link";
 import Router from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Login = () => {
   const formik = useFormik({
     initialValues: {
-      email: "demo@devias.io",
+      email: "demo@email.com",
       password: "Password123",
     },
     validationSchema: Yup.object({
@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Login | Material Kit</title>
+        <title>Login</title>
       </Head>
       <Box
         component="main"

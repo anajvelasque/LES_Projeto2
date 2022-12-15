@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Box, Container } from "@mui/material";
 import { CustomerListResults } from "../components/customer/customer-list-results";
-import { CustomerListToolbar } from "../components/customer/customer-list-toolbar";
 import { DashboardLayout } from "../components/dashboard-layout";
 import { axiosClient } from "../utils/axiosClient";
 
@@ -13,7 +12,7 @@ async function getCustomersAsync() {
 const Page = ({ customers }) => (
   <>
     <Head>
-      <title>Customers | Material Kit</title>
+      <title>Customers</title>
     </Head>
     <Box
       component="main"

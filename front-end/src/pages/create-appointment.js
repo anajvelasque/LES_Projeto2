@@ -14,11 +14,11 @@ const Page = () => (
         py: 8,
       }}
     >
-    <Container maxWidth={false}>
-    <div style={{fontSize: 40, fontColor: 'darkBlue', fontWeight: 700, paddingBottom: 50}}>
-    Agende sua consulta:
-    </div>
-    </Container>
+      <Container maxWidth={false}>
+        <div style={{ fontSize: 40, fontColor: "darkBlue", fontWeight: 700, paddingBottom: 50 }}>
+          Agende sua consulta:
+        </div>
+      </Container>
     </Box>
   </>
 );

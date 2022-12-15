@@ -1,13 +1,9 @@
 import Head from "next/head";
 import NextLink from "next/link";
-import Router from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Facebook as FacebookIcon } from "../icons/facebook";
-import { Google as GoogleIcon } from "../icons/google";
-
 import { axiosClient } from "../utils/axiosClient";
 
 async function postAddressesAsync(address) {
